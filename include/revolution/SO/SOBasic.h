@@ -25,6 +25,8 @@ int SOConnect(int socket, const struct sockaddr* address, int address_len);
 int SOClose(int socket);
 u32 SORecvFrom(int socket, void* buffer, u32 length, int flags, struct sockaddr* address, u32* address_len);
 u32 SOSendTo(int socket, const void* message, u32 length, int flags, const struct sockaddr* dest_addr, u32 dest_len);
+void SOCleanup(void);
+void SOFinish(void);
 
 char* SOInetNtoA(struct in_addr in);
 u32 SOHtoNl(u32 hostlong);
