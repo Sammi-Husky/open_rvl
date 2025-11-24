@@ -49,6 +49,27 @@ public:
 };
 }
 
+#ifdef __MWERKS__
+
+#define ENUM_U8(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 1") enum name {  __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
+#define ENUM_U16(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 2") enum name { __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
+#define ENUM_U32(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 4") enum name { __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
+
+#define ENUM_S8(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 1") enum name { _##name = -1, __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
+#define ENUM_S16(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 2") enum name { _##name = -1, __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
+#define ENUM_S32(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 4") enum name { _##name = -1, __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
+
+#else
+#define ENUM_U8(name, ...) enum name : u8 { __VA_ARGS__ }
+#define ENUM_U16(name, ...) enum name : u16 { __VA_ARGS__ }
+#define ENUM_U32(name, ...) enum name : u32 { __VA_ARGS__ }
+
+#define ENUM_S8(name, ...) enum name : s8 { __VA_ARGS__ }
+#define ENUM_S16(name, ...) enum name : s16 { __VA_ARGS__ }
+#define ENUM_S32(name, ...) enum name : s32 { __VA_ARGS__ }
+
+#endif
+
 const std::nullptr_t nullptr = {};
 #endif
 
