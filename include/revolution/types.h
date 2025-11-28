@@ -51,13 +51,13 @@ public:
 
 #ifdef __MWERKS__
 
-#define ENUM_U8(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 1") enum name {  __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
-#define ENUM_U16(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 2") enum name { __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
-#define ENUM_U32(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 4") enum name { __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
+#define ENUM_U8(name, ...) _Pragma("push") _Pragma("enumsalwaysint off") _Pragma("min_enum_size 1") enum name {  __VA_ARGS__ } _Pragma("pop")
+#define ENUM_U16(name, ...) _Pragma("push") _Pragma("enumsalwaysint off") _Pragma("min_enum_size 2") enum name { __VA_ARGS__ } _Pragma("pop")
+#define ENUM_U32(name, ...)  _Pragma("push") _Pragma("enumsalwaysint off") _Pragma("min_enum_size 4") enum name { __VA_ARGS__ } _Pragma("pop")
 
-#define ENUM_S8(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 1") enum name { _##name = -1, __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
-#define ENUM_S16(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 2") enum name { _##name = -1, __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
-#define ENUM_S32(name, ...) _Pragma("enumsalwaysint off") _Pragma("min_enum_size 4") enum name { _##name = -1, __VA_ARGS__ } _Pragma("enumsalwaysint reset") _Pragma("min_enum_size 1")
+#define ENUM_S8(name, ...)  _Pragma("push") _Pragma("enumsalwaysint off") _Pragma("min_enum_size 1") enum name { _##name = -1, __VA_ARGS__ } _Pragma("pop")
+#define ENUM_S16(name, ...) _Pragma("push") _Pragma("enumsalwaysint off") _Pragma("min_enum_size 2") enum name { _##name = -1, __VA_ARGS__ } _Pragma("pop")
+#define ENUM_S32(name, ...)  _Pragma("push") _Pragma("enumsalwaysint off") _Pragma("min_enum_size 4") enum name { _##name = -1, __VA_ARGS__ } _Pragma("pop")
 
 #else
 #define ENUM_U8(name, ...) enum name : u8 { __VA_ARGS__ }
