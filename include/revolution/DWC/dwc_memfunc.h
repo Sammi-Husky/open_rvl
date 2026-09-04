@@ -7,8 +7,8 @@
 extern "C" {
 #endif
 
-typedef void* (*DWCAlloc)(int, size_t size, int align = 0x20);
-typedef void (*DWCFree)(int, void*);
+typedef void* (*DWCAlloc)(int, size_t size, int align);
+typedef void (*DWCFree)(int, void*, int);
 
 void DWCi_SetMemFunc(DWCAlloc alloc, DWCFree free);
 
